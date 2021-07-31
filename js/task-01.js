@@ -1,10 +1,9 @@
 const listCategories = document.querySelectorAll('ul#categories > li.item');
 
-function elementProcessing(element) {
-    const childElm = element.children;
+function elementProcessing(elements) {
 
-    for (let el of childElm) {
-        switch (el.tagName) {
+    for (let el of elements) {
+        switch (el.tagName.toUpperCase()) {
             case "H2":
                 console.log(`Категорія: ${el.textContent}`);
                 break;
@@ -16,4 +15,4 @@ function elementProcessing(element) {
 };
 
 console.log(`У списку ${listCategories.length} категорії.`);
-listCategories.forEach(categorie => elementProcessing(categorie));
+listCategories.forEach(categorie => elementProcessing(categorie.children));
