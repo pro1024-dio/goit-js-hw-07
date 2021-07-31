@@ -14,6 +14,7 @@ JavaScript homework - 07
 - Код відформатований за допомогою Prettier
 
 [Завдання 1](task-1.md)
+
 [Завдання 2](task-2.md)
 [Завдання 3](task-3.md)
 [Завдання 4](task-4.md)
