@@ -16,9 +16,15 @@ JavaScript homework - 07
 [Завдання 1](task-1.md)
 
 [Завдання 2](task-2.md)
+
 [Завдання 3](task-3.md)
+
 [Завдання 4](task-4.md)
+
 [Завдання 5](task-5.md)
+
 [Завдання 6](task-6.md)
+
 [Завдання 7](task-7.md)
+
 [Завдання 8](task-8.md)
