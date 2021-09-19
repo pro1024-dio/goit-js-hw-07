@@ -1,6 +1,8 @@
 const INIT_BOX_SIZE = 30;
 const INC_BOX_SIZE = 10;
-const controls = document.querySelector("div#controls");
+const inputNumber = document.querySelector("div#controls");
+const buttonRender = document.querySelector('[data-action="render"]');
+const buttonDestroy = document.querySelector('[data-action="destroy"]');
 const boxes = document.querySelector("div#boxes");
 
 function getRandomColor() {
@@ -13,44 +15,33 @@ function getRandomHex() {
     .padStart(2, "0");
 }
 
-function destroyBoxes() {
-    boxes.innerHTML = '';
-};
-
 function createBoxes(amount) {
     const markupArray = [];
     console.log(`Для створення блоків передано: ${amount}`);
     
     const getBoxSize = index => INIT_BOX_SIZE + index * INC_BOX_SIZE;
 
-    if (boxes.children.length !== 0) {
-        if (confirm(`Колекція містить створених ${boxes.children.length} блоків. Для продовження необхідно очистити колекцію.
-        Очистити колекцію?`)) destroyBoxes();
-        else return;
-    };
+    // if (boxes.children.length !== 0) {
+    //     if (confirm(`Колекція містить створених ${boxes.children.length} блоків. Для продовження необхідно очистити колекцію.
+    //     Очистити колекцію?`)) destroyBoxes();
+    //     else return;
+    // };
     
     for (let i = 1; i <= amount; i++) {
         let elmMarkup = "";
-        elmMarkup = `<div style="position: absolute; z-index: ${amount-i}; background-color: ${getRandomColor()}; height: ${getBoxSize(i)}px; width: ${getBoxSize(i)}px"></div>`;
+        // elmMarkup = `<div style="position: absolute; z-index: ${amount-i}; background-color: ${getRandomColor()}; height: ${getBoxSize(i)}px; width: ${getBoxSize(i)}px"></div>`;
+        elmMarkup = `<div style="background-color: ${getRandomColor()}; height: ${getBoxSize(i)}px; width: ${getBoxSize(i)}px"></div>`;
         markupArray.push(elmMarkup);
     };
 
-    boxes.insertAdjacentHTML('afterbegin', markupArray.join(""));
+    boxes.insertAdjacentHTML('beforeend', markupArray.join(""));
  };
 
 const handlerClick = (event) => {
-    const elm = event.target;
 
-    if (elm.nodeName === "BUTTON")
-        switch (elm.dataset.action) {
-            case 'render':
-                const inputValue = Number(controls.querySelector("input").value);
-                createBoxes(inputValue);
-                break;
-            case 'destroy':
-                destroyBoxes();
-                break;
-        }
+    const inputValue = Number(controls.querySelector("input").value);
+    createBoxes(inputValue);
+        
 };
 
 const handlerChange = (event) => {
@@ -64,5 +55,6 @@ const handlerChange = (event) => {
     }
 };
 
-controls.addEventListener('click', handlerClick);
-controls.addEventListener('change', handlerChange);
+buttonRender.addEventListener('click', handlerClick);
+buttonDestroy.addEventListener('click', () => boxes.innerHTML = '');
+inputNumber.addEventListener('change', handlerChange);
